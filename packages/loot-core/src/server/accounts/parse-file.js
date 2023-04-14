@@ -86,9 +86,7 @@ async function parseQIF(filepath) {
 }
 
 async function parseOFX(filepath) {
-  let { getOFXTransactions, initModule } = await import(
-    /* webpackChunkName: 'xfo' */ 'node-libofx'
-  );
+  let { getOFXTransactions, initModule } = await import('node-libofx');
   await initModule();
 
   let errors = [];

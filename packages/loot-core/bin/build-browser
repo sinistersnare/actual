@@ -2,7 +2,6 @@
 
 cd `dirname "$0"`
 ROOT=`pwd -P`
-WEBPACK_ARGS=""
 
 DATA_DIR="$ROOT"/../../desktop-client/public/data
 mkdir -p "$DATA_DIR"
@@ -24,10 +23,9 @@ rm -f ../lib-dist/browser/*
 rm -rf ../../desktop-client/public/kcab
 
 if [ $NODE_ENV == 'development' ]; then
-  # In dev mode, always enable watch mode and symlink the build files.
+  # In dev mode, symlink the build files.
   # Make sure to do this before starting the build since watch mode
   # will block
-  WEBPACK_ARGS="$WEBPACK_ARGS --watch"
   if [ "$OSTYPE" == "msys" ]; then
     # Ensure symlinks are created as native Windows symlinks.
     export MSYS=winsymlinks:nativestrict
@@ -35,12 +33,8 @@ if [ $NODE_ENV == 'development' ]; then
   ln -snf "$ROOT"/../lib-dist/browser ../../desktop-client/public/kcab
 fi
 
-yarn webpack --config ../webpack/webpack.browser.config.js \
-  --target "webworker" \
-  --output-filename "kcab.worker.$OUTPUT_HASH.js" \
-  --output-chunkfilename "[id].[name].kcab.worker.$OUTPUT_HASH.js" \
-  --progress \
-  $WEBPACK_ARGS
+# In dev mode, watch mode is used.
+(cd .. ; OUTFMT="[dir]/[name].$OUTPUT_HASH" BUILD_ENV="$NODE_ENV" node esbuild.config.mjs)
 
 
 if [ $NODE_ENV == 'production' ]; then
