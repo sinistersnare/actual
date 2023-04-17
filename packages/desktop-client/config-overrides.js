@@ -15,6 +15,10 @@ module.exports = {
   webpack: override(
     babelInclude([path.resolve('src'), path.resolve('../loot-core')]),
     addWebpackResolve({
+      fallback: {
+        path: false,
+        fs: false,
+      },
       extensions: [
         ...(process.env.IS_GENERIC_BROWSER
           ? ['.browser.js', '.browser.ts', '.browser.tsx']

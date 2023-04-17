@@ -1,9 +1,16 @@
 import fs from 'fs';
 import * as path from 'path';
 
+import { PerspectiveEsbuildPlugin } from '@finos/perspective-esbuild-plugin';
 import * as esbuild from 'esbuild';
 import { polyfillNode } from 'esbuild-plugin-polyfill-node';
 import peg from 'peggy';
+
+// const { PerspctiveEsbuildPlugin } = perspective;
+
+// const {
+//   PerspctiveEsbuildPlugin,
+// } = require('@finos/perspective-esbuild-plugin');
 
 /// TODO: this is super hacky.
 // import { createRequire } from 'node:module';
@@ -73,7 +80,7 @@ const config = {
   alias: {
     // fs: require.resolve('memfs'),
   },
-  plugins: [pegPlugin, polyfillNode()],
+  plugins: [pegPlugin, polyfillNode(), PerspectiveEsbuildPlugin()],
   // target: ['es2020'], // TODO: should we set this?
 };
 

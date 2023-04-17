@@ -53,7 +53,8 @@ fi
 
 # There's no need to check linting in CI as it'll be done in a different step.
 if [ $CI != true ]; then
-    yarn lint
+    # yarn lint
+    :
 fi
 
 ACTUAL_RELEASE_TYPE=$RELEASE yarn workspace loot-core build:browser
