@@ -6,6 +6,10 @@
     "build"
   ],
   "devDependencies": {
+    "@finos/perspective": "2.0.1",
+    "@finos/perspective-viewer": "2.0.1",
+    "@finos/perspective-viewer-d3fc": "2.0.1",
+    "@finos/perspective-viewer-datagrid": "2.0.1",
     "@juggle/resize-observer": "^3.1.2",
     "@playwright/test": "^1.29.1",
     "@reach/listbox": "^0.11.2",

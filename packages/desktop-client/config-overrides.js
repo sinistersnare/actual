@@ -26,6 +26,10 @@ module.exports = {
         '.ts',
         '.tsx',
       ],
+      fallback: {
+        path: false,
+        fs: false,
+      },
     }),
     config => {
       config.cache = false;
